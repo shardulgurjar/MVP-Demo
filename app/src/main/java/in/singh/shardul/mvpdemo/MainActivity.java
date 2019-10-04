@@ -25,25 +25,15 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email = null,password = null;
-                try {
-                     email = edtEmail.getText().toString().trim();
-                }catch (NullPointerException e){
-                    mt("Please Enter Email");
-                }
-                try{
-                    password = edtPassword.getText().toString().trim();
-                }catch (NullPointerException e){
-                    mt("Plese Enter Password");
-                }
 
+                String  email = edtEmail.getText().toString().trim();
+                String password = edtPassword.getText().toString().trim();
 
                 if(TextUtils.isEmpty(email) || TextUtils.isEmpty(password)){
                     onError("Fields Required");
                 }else{
                     presenter.doLogin(email,password);
                 }
-
             }
         });
     }
