@@ -12,8 +12,8 @@ import com.google.android.material.textfield.TextInputEditText;
 
 public class MainActivity extends AppCompatActivity implements MainActivityContract.View {
 
-    TextInputEditText edtEmail,edtPassword;
-    MaterialButton btnLogin;
+    private TextInputEditText edtEmail,edtPassword;
+    private MaterialButton btnLogin;
     MainActivityContract.Presenter presenter;
 
     @Override
@@ -25,8 +25,18 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email = edtEmail.getText().toString().trim();
-                String password = edtPassword.getText().toString().trim();
+                String email = null,password = null;
+                try {
+                     email = edtEmail.getText().toString().trim();
+                }catch (NullPointerException e){
+                    mt("Please Enter Email");
+                }
+                try{
+                    password = edtPassword.getText().toString().trim();
+                }catch (NullPointerException e){
+                    mt("Plese Enter Password");
+                }
+
 
                 if(TextUtils.isEmpty(email) || TextUtils.isEmpty(password)){
                     onError("Fields Required");
